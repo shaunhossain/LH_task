@@ -1,0 +1,70 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:react_conf/bloc/internet_bloc/internet_bloc.dart';
+import 'package:react_conf/data/repository/repository.dart';
+import 'package:react_conf/ui/page/conference_info_page/conference_info_page.dart';
+import 'package:react_conf/ui/page/home_page/home_page.dart';
+import 'package:react_conf/ui/page/main_screen/main_page.dart';
+import 'package:react_conf/ui/page/sponsor_page/sponsor_page.dart';
+
+class RouteGenerator {
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    final args = settings.arguments;
+
+    final Repository repository = Repository();
+
+    switch (settings.name) {
+      case '/home':
+        return MaterialPageRoute(
+          builder: (_) => MultiBlocProvider(providers: [
+            BlocProvider(
+              create: (_) => InternetBloc(),
+            ),
+          ], child: const HomePage()),
+        );
+
+      case '/sponsor':
+        return MaterialPageRoute(
+          builder: (_) => MultiBlocProvider(providers: [
+            BlocProvider(
+              create: (_) => InternetBloc(),
+            ),
+          ], child: const SponsorPage()),
+        );
+
+      case '/conference-info':
+        return MaterialPageRoute(
+          builder: (_) => MultiBlocProvider(providers: [
+            BlocProvider(
+              create: (_) => InternetBloc(),
+            ),
+          ], child: const ConferenceInfoPage()),
+        );
+
+      case '/main':
+        return MaterialPageRoute(
+          builder: (_) => MultiBlocProvider(providers: [
+            BlocProvider(
+              create: (_) => InternetBloc(),
+            ),
+          ], child: const MainPage()),
+        );
+
+      default:
+        return _errorRoute();
+    }
+  }
+
+  static Route<dynamic> _errorRoute() {
+    return MaterialPageRoute(builder: (_) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Error'),
+        ),
+        body: const Center(
+          child: Text('ERROR'),
+        ),
+      );
+    });
+  }
+}
