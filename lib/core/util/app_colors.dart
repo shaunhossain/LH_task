@@ -10,7 +10,6 @@
   const greyColor = Color(0xffCDCDCD);
   const blueColor = Color(0xff2563EB);
   const whiteColor = Color(0xffF9FAFB);
- const darkWhiteColor = Color(0xFFF9FAFB);
  const shadowColor = Color(0x34000000);
 
 

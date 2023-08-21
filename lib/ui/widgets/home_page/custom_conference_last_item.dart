@@ -5,10 +5,11 @@ import 'package:react_conf/core/util/styles.dart';
 import 'package:react_conf/ui/widgets/home_page/highlighter_indicator.dart';
 
 class CustomConferenceLastItem extends StatelessWidget {
-  const CustomConferenceLastItem({super.key, required this.title, required this.about, required this.date});
+  const CustomConferenceLastItem({super.key, required this.title, required this.about, required this.date, required this.onTap});
   final String title;
   final String about;
   final String date;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
