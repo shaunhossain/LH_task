@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:react_conf/core/util/app_colors.dart';
 import 'package:react_conf/core/util/size_config.dart';
 import 'package:react_conf/core/util/styles.dart';
-import 'package:react_conf/ui/widgets/conference_info_page/custom_organizer_item.dart';
-import 'package:react_conf/ui/widgets/conference_info_page/custom_schedule_item.dart';
-import 'package:react_conf/ui/widgets/conference_info_page/custom_speaker_item.dart';
 import 'package:react_conf/ui/widgets/conference_info_page/custom_sponsor_item.dart';
 
 class SponsorsTab extends StatelessWidget {
