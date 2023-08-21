@@ -10,7 +10,29 @@ class SponsorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return SafeArea(child: Scaffold(
-      body: Center(child: Text("SponsorPage",style: h1TextStyle(darkGreyColor),)),
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          children: [
+            Card(
+              elevation: 0,
+              color: darkWhiteColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8)
+              ),
+              child: const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Text("data"),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     ));
   }
 }

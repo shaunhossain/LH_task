@@ -12,6 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return SafeArea(child: Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         // title: SvgPicture.asset("assets/react_conf_icon.svg",width: SizeConfig.width! * 0.29, height: SizeConfig.height! * 0.06,fit: BoxFit.cover,),
         // centerTitle: true,

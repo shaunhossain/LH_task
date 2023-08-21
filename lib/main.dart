@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/theme_bloc/theme_cubit.dart';
 import 'core/app_bloc_observer.dart';
-import 'core/util/styles.dart';
 import 'data/my_http_overrides.dart';
 import 'core/navigation/route_generator.dart';
 
@@ -14,11 +13,8 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   //FlutterServicesBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-  BlocOverrides.runZoned(
-        () => runApp(const App()),
-    blocObserver: AppBlocObserver(),
-  );
-
+  Bloc.observer = AppBlocObserver();
+  runApp(const App());
 }
 
 

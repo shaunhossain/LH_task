@@ -10,6 +10,7 @@ class ConferenceInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return SafeArea(child: Scaffold(
+      backgroundColor: Colors.white,
       body: Center(child: Text("Conference Page",style: h1TextStyle(darkGreyColor),)),
     ));
   }
