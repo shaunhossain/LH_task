@@ -53,7 +53,7 @@ class CustomConferenceItem extends StatelessWidget {
                       ),
                       Container(
                         width: SizeConfig.width! * 0.73,
-                        height: SizeConfig.height! * 0.15,
+                        height: SizeConfig.height! * 0.16,
                         padding: const EdgeInsets.all(10),
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8),bottomRight: Radius.circular(8)),
@@ -92,7 +92,7 @@ class CustomConferenceItem extends StatelessWidget {
                 ),
               )),
           Positioned(
-              left: SizeConfig.width! * 0.22,
+              left: SizeConfig.width! * 0.2,
               top: -2,
               child: Text(date,style: p1TextStyle(darkGreyColor),)),
         ],

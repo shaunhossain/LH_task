@@ -43,7 +43,7 @@ class CustomConferenceLastItem extends StatelessWidget {
                     ),
                     Container(
                       width: SizeConfig.width! * 0.73,
-                      height: SizeConfig.height! * 0.15,
+                      height: SizeConfig.height! * 0.16,
                       padding: const EdgeInsets.all(10),
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8),bottomRight: Radius.circular(8)),
