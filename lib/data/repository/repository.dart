@@ -1,19 +1,19 @@
-import 'dart:developer';
-
-import 'package:react_conf/data/api/api_services.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class Repository {
-  final ApiServices apiServices = ApiServices();
+  final GraphQLClient client;
 
-  // Future<dynamic> sendLoginRequest(
-  //     {required String userId, required String password}) async {
-  //   final userLoginData = await authApiServices.sendUserLoginRequest(
-  //       userId: userId, password: password);
-  //   return userLoginData;
-  // }
-  //
-  // Future<dynamic> userLogoutRequest() async {
-  //   final logoutResponse = await authApiServices.sendUserLogoutRequest();
-  //   return logoutResponse;
-  // }
+  Repository({
+    required this.client,
+  });
+
+  Future<QueryResult> getPosts({required String query}) async {
+    final results = await client.query(
+      QueryOptions(
+        document: gql(query),
+      ),
+    );
+    print(results);
+    return results;
+  }
 }

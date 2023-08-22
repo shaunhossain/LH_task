@@ -4,7 +4,6 @@ import 'package:react_conf/core/bottom_navbar/bottom_nav_bar_item.dart';
 import 'package:react_conf/core/bottom_navbar/custom_animated_bottom_bar.dart';
 import 'package:react_conf/core/util/app_colors.dart';
 import 'package:react_conf/core/util/size_config.dart';
-import 'package:react_conf/data/repository/repository.dart';
 import 'package:react_conf/ui/page/home_page/home_page.dart';
 import 'package:react_conf/ui/page/sponsor_page/sponsor_page.dart';
 
@@ -17,7 +16,6 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   late BottomNavBarBloc _bottomNavBarBloc;
-  final repository = Repository();
 
   @override
   void initState() {

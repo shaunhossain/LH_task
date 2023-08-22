@@ -1,17 +1,17 @@
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'bloc/theme_bloc/theme_cubit.dart';
 import 'core/app_bloc_observer.dart';
 import 'data/my_http_overrides.dart';
 import 'core/navigation/route_generator.dart';
 
-void main() {
+Future<void> main() async {
   // needs to be initialized before using workmanager package
   WidgetsFlutterBinding.ensureInitialized();
-  //FlutterServicesBinding.ensureInitialized();
+  await initHiveForFlutter();
   HttpOverrides.global = MyHttpOverrides();
   Bloc.observer = AppBlocObserver();
   runApp(const App());

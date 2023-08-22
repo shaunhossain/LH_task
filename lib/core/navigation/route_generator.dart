@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:react_conf/bloc/internet_bloc/internet_bloc.dart';
-import 'package:react_conf/data/repository/repository.dart';
 import 'package:react_conf/ui/page/conference_info_page/conference_info_page.dart';
 import 'package:react_conf/ui/page/home_page/home_page.dart';
 import 'package:react_conf/ui/page/main_screen/main_page.dart';
@@ -10,8 +9,6 @@ import 'package:react_conf/ui/page/sponsor_page/sponsor_page.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
-
-    final Repository repository = Repository();
 
     switch (settings.name) {
       case '/home':

@@ -19,7 +19,7 @@ class CustomConferenceLastItem extends StatelessWidget {
       child: Stack(
         children: [
           const Positioned(
-              top: 20,
+              top: 15,
               left: 16,
               child: Highlighter()),
           Positioned(
