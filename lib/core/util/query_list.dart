@@ -31,15 +31,19 @@ String conferenceQuery({required String id}) => r'''
         github
         twitch
         facebook
+        dribble
       }
     }
-    schedules{
+  schedules{
       day
       description
       intervals{
-        title
-        begin
-        end
+        sessions{
+          day
+          title
+          begin
+          end
+        }
       }
     }
     sponsors{

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:react_conf/core/util/app_colors.dart';
 import 'package:react_conf/core/util/size_config.dart';
 import 'package:react_conf/core/util/styles.dart';
@@ -25,11 +26,14 @@ class CustomSponsorItem extends StatelessWidget {
         children: [
           Flexible(
             flex: 1,
-            child: Image.asset(
-              imageUrl,
-              width: SizeConfig.width! * 0.24,
-              height: SizeConfig.width! * 0.24,
-              fit: BoxFit.cover,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: SvgPicture.network(
+                imageUrl,
+                width: SizeConfig.width! * 0.24,
+                height: SizeConfig.width! * 0.24,
+                fit: BoxFit.scaleDown,
+              ),
             ),
           ),
           Flexible(

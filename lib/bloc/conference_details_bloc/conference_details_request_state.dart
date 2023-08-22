@@ -1,7 +1,7 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:react_conf/data/model/conference_response/conference_response.dart';
+import 'package:react_conf/data/model/conference_detail_response/conference_detail_response.dart';
 
 @immutable
 abstract class ConferenceDetailsRequestState extends Equatable {
@@ -14,11 +14,11 @@ class InitialConferenceDetailsRequest extends ConferenceDetailsRequestState {}
 class SendingConferenceDetailsRequest extends ConferenceDetailsRequestState {}
 
 class GetConferenceDetailsSuccessfully extends ConferenceDetailsRequestState {
-  GetConferenceDetailsSuccessfully({required this.listOfConference});
- final List<Conference> listOfConference;
+  GetConferenceDetailsSuccessfully({required this.conferenceDetailData});
+ final ConferenceDetailData conferenceDetailData;
 
  @override
- List<Object> get props => [listOfConference];
+ List<Object> get props => [conferenceDetailData];
 }
 
 class ConferenceDetailsRequestError extends ConferenceDetailsRequestState {

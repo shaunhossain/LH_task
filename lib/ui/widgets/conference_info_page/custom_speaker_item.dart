@@ -26,11 +26,14 @@ class CustomSpeakerItem extends StatelessWidget {
         children: [
           Flexible(
             flex: 1,
-            child: Image.asset(
-              imageUrl,
-              width: SizeConfig.width! * 0.24,
-              height: SizeConfig.width! * 0.24,
-              fit: BoxFit.cover,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                imageUrl,
+                width: SizeConfig.width! * 0.24,
+                height: SizeConfig.width! * 0.24,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Flexible(

@@ -7,14 +7,14 @@ ConferenceDetailResponse conferenceDetailResponseFromJson(String str) => Confere
 String conferenceDetailResponseToJson(ConferenceDetailResponse data) => json.encode(data.toJson());
 
 class ConferenceDetailResponse {
-  final Data? data;
+  final ConferenceDetailData? data;
 
   ConferenceDetailResponse({
     this.data,
   });
 
   factory ConferenceDetailResponse.fromJson(Map<String, dynamic> json) => ConferenceDetailResponse(
-    data: json["data"] == null ? null : Data.fromJson(json["data"]),
+    data: json["data"] == null ? null : ConferenceDetailData.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -22,14 +22,14 @@ class ConferenceDetailResponse {
   };
 }
 
-class Data {
+class ConferenceDetailData {
   final Conference? conference;
 
-  Data({
+  ConferenceDetailData({
     this.conference,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory ConferenceDetailData.fromJson(Map<String, dynamic> json) => ConferenceDetailData(
     conference: json["conference"] == null ? null : Conference.fromJson(json["conference"]),
   );
 
