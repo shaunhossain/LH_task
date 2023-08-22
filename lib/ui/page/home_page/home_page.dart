@@ -99,6 +99,7 @@ class _HomePageState extends State<HomePage> {
                             onTap: () {
                               Navigator.of(context).pushNamed(
                                 '/conference-info',
+                                arguments: state.listOfConference[index].id
                               );
                             },
                           );
@@ -111,6 +112,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             Navigator.of(context).pushNamed(
                               '/conference-info',
+                                arguments: state.listOfConference[index].id
                             );
                           },
                         );
