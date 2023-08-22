@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:react_conf/bloc/conference_details_bloc/conference_details_bloc.dart';
 import 'package:react_conf/bloc/conference_list_bloc/conference_list_bloc.dart';
 import 'package:react_conf/bloc/internet_bloc/internet_bloc.dart';
+import 'package:react_conf/bloc/sponsor_bloc/sponsor_bloc.dart';
 import 'package:react_conf/data/client/client.dart';
 import 'package:react_conf/data/repository/repository.dart';
 import 'package:react_conf/ui/page/conference_info_page/conference_info_page.dart';
@@ -34,6 +35,9 @@ class RouteGenerator {
             BlocProvider(
               create: (_) => InternetBloc(),
             ),
+            BlocProvider(
+              create: (_) => SponsorBloc(repository: repository),
+            ),
           ], child: const SponsorPage()),
         );
 
@@ -59,6 +63,9 @@ class RouteGenerator {
             ),
             BlocProvider(
               create: (_) => ConferenceListBloc(repository: repository),
+            ),
+            BlocProvider(
+              create: (_) => SponsorBloc(repository: repository),
             ),
           ], child: const MainPage()),
         );

@@ -1,17 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:react_conf/bloc/sponsor_bloc/sponsor_bloc.dart';
+import 'package:react_conf/bloc/sponsor_bloc/sponsor_request_event.dart';
 import 'package:react_conf/core/util/app_colors.dart';
 import 'package:react_conf/core/util/size_config.dart';
 import 'package:react_conf/core/util/styles.dart';
 
-class SponsorPage extends StatelessWidget {
+class SponsorPage extends StatefulWidget {
   const SponsorPage({super.key});
+
+  @override
+  State<SponsorPage> createState() => _SponsorPageState();
+}
+
+class _SponsorPageState extends State<SponsorPage> {
+
+  @override
+  void initState() {
+    _getConferenceList();
+    super.initState();
+  }
+
+  void _getConferenceList() {
+    context.read<SponsorBloc>().add(SendSponsorRequest());
+  }
+
+  List<String> widgetList = ['A', 'B', 'C'];
+  List<String> widgetList2 = ['A', 'B', 'C','D','E','F','G'];
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    List<String> widgetList = ['A', 'B', 'C'];
-    List<String> widgetList2 = ['A', 'B', 'C','D','E','F','G'];
-
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,

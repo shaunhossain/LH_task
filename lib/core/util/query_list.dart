@@ -57,3 +57,15 @@ String conferenceQuery({required String id}) => r'''
 }
 ''';
 
+String sponsorListQuery() => r'''
+{
+  sponsors{
+    name
+    type
+    image{
+      url
+    }
+  }
+}
+''';
+
