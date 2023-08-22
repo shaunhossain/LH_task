@@ -7,7 +7,7 @@ class Repository {
     required this.client,
   });
 
-  Future<QueryResult> getPosts({required String query}) async {
+  Future<QueryResult> getData({required String query}) async {
     final results = await client.query(
       QueryOptions(
         document: gql(query),
