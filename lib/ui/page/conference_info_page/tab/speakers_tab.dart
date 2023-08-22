@@ -28,30 +28,30 @@ class SpeakersTab extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              Card(
-                elevation: 0,
-                color: whiteColor,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
-                child: Container(
-                    width: SizeConfig.width,
-                    height: SizeConfig.height! * 0.58,
-                    padding: const EdgeInsets.only(top: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: whiteColor,
-                    ),
-                    child: ListView.builder(
-                        itemCount: 20,
-                        itemBuilder: (context,index){
-                          return const CustomSpeakerItem(
-                              imageUrl: "assets/example_person.png",
-                              name: "John Blain Doe",
-                              about:
-                              "Lorem ipsum dolor sit amet, con sec tetur ad ipi scin ssddg elit. Et con dim entum lectus in vel pellesn tesque arcu non odio.");
-                        })
-                ),
-              ),
+              // Card(
+              //   elevation: 0,
+              //   color: whiteColor,
+              //   shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(8)),
+              //   child: Container(
+              //       width: SizeConfig.width,
+              //       height: SizeConfig.height! * 0.58,
+              //       padding: const EdgeInsets.only(top: 10),
+              //       decoration: BoxDecoration(
+              //         borderRadius: BorderRadius.circular(8),
+              //         color: whiteColor,
+              //       ),
+              //       child: ListView.builder(
+              //           itemCount: 20,
+              //           itemBuilder: (context,index){
+              //             return CustomSpeakerItem(
+              //                 imageUrl: "assets/example_person.png",
+              //                 name: "John Blain Doe",
+              //                 about:
+              //                 "Lorem ipsum dolor sit amet, con sec tetur ad ipi scin ssddg elit. Et con dim entum lectus in vel pellesn tesque arcu non odio.", social: null,);
+              //           })
+              //   ),
+              // ),
             ],
           )),
     );

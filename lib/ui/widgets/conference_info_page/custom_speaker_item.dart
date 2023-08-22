@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:react_conf/core/util/app_colors.dart';
 import 'package:react_conf/core/util/size_config.dart';
 import 'package:react_conf/core/util/styles.dart';
+import 'package:react_conf/data/model/conference_detail_response/conference_detail_response.dart' as data;
 import 'package:react_conf/ui/widgets/conference_info_page/custom_social_button.dart';
 
 class CustomSpeakerItem extends StatelessWidget {
-  const CustomSpeakerItem({super.key, required this.imageUrl, required this.name, required this.about});
+  const CustomSpeakerItem({super.key, required this.imageUrl, required this.name, required this.about, required this.socialData});
   final String imageUrl;
   final String name;
   final String about;
+  final data.SocialData socialData;
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +49,42 @@ class CustomSpeakerItem extends StatelessWidget {
                   const SizedBox(height: 8,),
                   Row(
                     children: [
-                      CustomSocialButton(icon: "assets/tiwtter_icon.svg", onTap: (){}),
-                      const SizedBox(width: 16,),
-                      CustomSocialButton(icon: "assets/linkedin_icon.svg", onTap: (){}),
-                      const SizedBox(width: 16,),
-                      CustomSocialButton(icon: "assets/dribbble_icon.svg", onTap: (){}),
-                      const SizedBox(width: 16,),
-                      CustomSocialButton(icon: "assets/github_icon.svg", onTap: (){}),
+                      if(socialData.twitch != null)
+                        Row(
+                          children: [
+                            CustomSocialButton(icon: "assets/twitter_icon.svg", onTap: (){}),
+                            const SizedBox(width: 16,),
+                          ],
+                        )
+                      else
+                        const SizedBox(),
+                      if(socialData.linkedin != null)
+                        Row(
+                          children: [
+                            CustomSocialButton(icon: "assets/linkedin_icon.svg", onTap: (){}),
+                            const SizedBox(width: 16,),
+                          ],
+                        )
+                      else
+                        const SizedBox(),
+                      if(socialData.dribble != null)
+                        Row(
+                          children: [
+                            CustomSocialButton(icon: "assets/dribbble_icon.svg", onTap: (){}),
+                            const SizedBox(width: 16,),
+                          ],
+                        )
+                      else
+                        const SizedBox(),
+                      if(socialData.github != null)
+                        Row(
+                          children: [
+                            CustomSocialButton(icon: "assets/github_icon.svg", onTap: (){}),
+                            const SizedBox(width: 16,),
+                          ],
+                        )
+                      else
+                        const SizedBox(),
                     ],
                   ),
                   const SizedBox(height: 8,),

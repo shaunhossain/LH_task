@@ -70,7 +70,7 @@ class Organizer {
   final String? name;
   final String? about;
   final Image? image;
-  final Social? social;
+  final SocialData? social;
 
   Organizer({
     this.name,
@@ -83,7 +83,7 @@ class Organizer {
     name: json["name"],
     about: json["about"],
     image: json["image"] == null ? null : Image.fromJson(json["image"]),
-    social: json["social"] == null ? null : Social.fromJson(json["social"]),
+    social: json["social"] == null ? null : SocialData.fromJson(json["social"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -110,30 +110,30 @@ class Image {
   };
 }
 
-class Social {
+class SocialData {
   final String? github;
-  final dynamic twitch;
-  final dynamic facebook;
-  final dynamic dribble;
+  final String? twitch;
+  final String? linkedin;
+  final String? dribble;
 
-  Social({
+  SocialData({
     this.github,
     this.twitch,
-    this.facebook,
+    this.linkedin,
     this.dribble,
   });
 
-  factory Social.fromJson(Map<String, dynamic> json) => Social(
+  factory SocialData.fromJson(Map<String, dynamic> json) => SocialData(
     github: json["github"],
     twitch: json["twitch"],
-    facebook: json["facebook"],
+    linkedin: json["linkedin"],
     dribble: json["dribble"],
   );
 
   Map<String, dynamic> toJson() => {
     "github": github,
     "twitch": twitch,
-    "facebook": facebook,
+    "linkedin": linkedin,
     "dribble": dribble,
   };
 }

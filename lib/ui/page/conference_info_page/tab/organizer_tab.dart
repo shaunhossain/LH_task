@@ -22,8 +22,7 @@ class OrganizerTab extends StatelessWidget {
       backgroundColor: Colors.white,
       body: BlocBuilder<ConferenceDetailsBloc, ConferenceDetailsRequestState>(
           builder: (context, state) {
-        if (state is InitialConferenceDetailsRequest &&
-            state is SendingConferenceDetailsRequest) {
+        if (state is SendingConferenceDetailsRequest) {
           return const Center(
             child: CircularProgressIndicator(
               color: primaryColor,
@@ -97,11 +96,11 @@ class OrganizerTab extends StatelessWidget {
                         child: ListView.builder(
                             itemCount: state.conferenceDetailData.conference?.speakers?.length,
                             itemBuilder: (context, index) {
-                              //log("errorOnConference -> ${state.conferenceDetailData.conference?.speakers?[index].image?.url} \n ${state.conferenceDetailData.conference?.speakers?[index].name}");
                               return CustomSpeakerItem(
                                   imageUrl: state.conferenceDetailData.conference?.speakers?[index].image?.url ?? "",
                                   name: state.conferenceDetailData.conference?.speakers?[index].name ?? "",
-                                  about: state.conferenceDetailData.conference?.speakers?[index].about ?? "");
+                                  about: state.conferenceDetailData.conference?.speakers?[index].about ?? "",
+                                socialData: state.conferenceDetailData.conference!.speakers![index].social!,);
                             })),
                   ),
 

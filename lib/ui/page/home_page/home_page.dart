@@ -67,8 +67,7 @@ class _HomePageState extends State<HomePage> {
         }
       }, child: BlocBuilder<ConferenceListBloc, ConferenceRequestState>(
         builder: (context, state) {
-          if (state is InitialConferenceRequest &&
-              state is SendingConferenceRequest) {
+          if (state is SendingConferenceRequest) {
             return const Center(
               child: CircularProgressIndicator(
                 color: primaryColor,
