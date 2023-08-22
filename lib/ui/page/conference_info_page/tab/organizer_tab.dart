@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:react_conf/bloc/conference_details_bloc/conference_details_bloc.dart';
@@ -129,10 +127,11 @@ class OrganizerTab extends StatelessWidget {
                           color: whiteColor,
                         ),
                         child: ListView.builder(
-                            itemCount: 10,
+                            itemCount: state.conferenceDetailData.conference?.schedules?.length,
                             itemBuilder: (context, index) {
-                              return const CustomScheduleItem(
-                                  date: "2022-09-14", day: "Wednesday");
+                              return CustomScheduleItem(
+                                  date: state.conferenceDetailData.conference!.schedules![index].day!,
+                                  listOfInterval: state.conferenceDetailData.conference!.schedules![index].intervals);
                             })),
                   ),
 

@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:react_conf/core/util/app_colors.dart';
 import 'package:react_conf/core/util/size_config.dart';
 import 'package:react_conf/core/util/styles.dart';
 import 'package:react_conf/ui/widgets/conference_info_page/custom_schedule_timeline_item.dart';
+import 'package:react_conf/data/model/conference_detail_response/conference_detail_response.dart' as data;
 
 class CustomScheduleItem extends StatelessWidget {
   const CustomScheduleItem({
     super.key,
     required this.date,
-    required this.day,
+    required this.listOfInterval,
   });
-  final String date;
-  final String day;
+  final DateTime date;
+  final List<data.Interval>? listOfInterval;
 
   @override
   Widget build(BuildContext context) {
@@ -31,32 +33,30 @@ class CustomScheduleItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                date,
+                DateFormat('yyyy - MM - dd')
+                    .format(date),
                 style: h4TextStyle(blackColor),
               ),
               Text(
-                day,
+                DateFormat('EEEE')
+                    .format(date),
                 style: p2TextStyle(blackColor),
               ),
             ],
           ),
-          const CustomScheduleTimelineItem(
-              begin: "05:00", end: "06:00", event: "Registration"),
-          const SizedBox(
-            height: 16,
+          Column(
+            children: listOfInterval!.map((item) => Column(
+              children: item.sessions!.map((subItem) => Column(
+                children: [
+                  CustomScheduleTimelineItem(
+                      begin: subItem.begin ?? "", end: subItem.end ?? "", event: subItem.title ?? ""),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                ],
+              )).toList()
+            )).toList(),
           ),
-          const CustomScheduleTimelineItem(
-              begin: "05:00", end: "06:00", event: "Registration"),
-          const SizedBox(
-            height: 16,
-          ),
-          const CustomScheduleTimelineItem(
-              begin: "05:00", end: "06:00", event: "Registration"),
-          const SizedBox(
-            height: 16,
-          ),
-          const CustomScheduleTimelineItem(
-              begin: "05:00", end: "06:00", event: "Registration"),
         ],
       ),
     );

@@ -26,14 +26,19 @@ class CustomScheduleTimelineItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              width: 5,
-              height: 5,
-              margin: const EdgeInsets.symmetric(horizontal: 12),
-              decoration: const BoxDecoration(
-                  color: blackColor, shape: BoxShape.circle),
+            Flexible(
+              flex: 1,
+              child: Container(
+                width: 5,
+                height: 5,
+                margin: const EdgeInsets.symmetric(horizontal: 12),
+                decoration: const BoxDecoration(
+                    color: blackColor, shape: BoxShape.circle),
+              ),
             ),
-            Text(event, style: p1TextStyle(blackColor)),
+            Flexible(
+              flex: 5,
+                child: Text(event, style: p1TextStyle(blackColor),maxLines: 1,)),
           ],
         ),
       ],
