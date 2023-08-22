@@ -20,17 +20,19 @@ class ConferenceListBloc extends Bloc<ConferenceRequestEvent, ConferenceRequestS
       Emitter<ConferenceRequestState> emit) async {
      emit(SendingConferenceRequest());
     try {
-      log("data ->");
       final response = await repository.getData(query: conferenceListQuery());
-      log("data2 ->");
       // if(response.isLoading){
       //   emit(SendingConferenceRequest());
       // }
-
       final responseString = response.data;
-      final ConferenceData responseData = ConferenceData.fromJson(responseString!);
-      log("data3 -> ${responseData.conferences?[1].id}");
-
+      try{
+        final ConferenceData responseData = ConferenceData.fromJson(responseString!);
+        emit(GetConferenceListSuccessfully(listOfConference: responseData.conferences ?? []));
+      }catch(exception){
+        emit(ConferenceRequestError(
+          error: UnknownException(exception.toString()),
+        ));
+      }
     } on SocketException {
       emit(ConferenceRequestError(
         error: NoInternetException('No Internet'),

@@ -50,6 +50,7 @@ class CustomConferenceLastItem extends StatelessWidget {
                         color: whiteColor,
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
