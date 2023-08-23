@@ -5,6 +5,7 @@ import 'package:react_conf/bloc/sponsor_bloc/sponsor_request_event.dart';
 import 'package:react_conf/bloc/sponsor_bloc/sponsor_request_state.dart';
 import 'package:react_conf/core/util/query_list.dart';
 import 'package:react_conf/data/exceptions.dart';
+import 'package:react_conf/data/model/sponsor_response/sponsor_response.dart';
 import 'package:react_conf/data/repository/repository.dart';
 
 class SponsorBloc
@@ -26,17 +27,16 @@ class SponsorBloc
       //   emit(SendingConferenceRequest());
       // }
       final responseString = response.data;
-      log("sponsor_data ->${responseString}");
-      // try {
-      //   final ConferenceDetailData responseData =
-      //       ConferenceDetailData.fromJson(responseString!);
-      //   emit(GetSponsorListSuccessfully(
-      //       conferenceDetailData: responseData));
-      // } catch (exception) {
-      //   emit(SponsorRequestError(
-      //     error: UnknownException(exception.toString()),
-      //   ));
-      // }
+      try {
+        final SponsorData responseData =
+            SponsorData.fromJson(responseString!);
+        emit(GetSponsorListSuccessfully(
+            listOfSponsors: responseData.sponsors!));
+      } catch (exception) {
+        emit(SponsorRequestError(
+          error: UnknownException(exception.toString()),
+        ));
+      }
     } on SocketException {
       emit(SponsorRequestError(
         error: NoInternetException('No Internet'),

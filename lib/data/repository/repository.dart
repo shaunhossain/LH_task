@@ -13,7 +13,6 @@ class Repository {
         document: gql(query),
       ),
     );
-    print(results);
     return results;
   }
 }
