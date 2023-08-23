@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:react_conf/bloc/conference_list_bloc/conference_request_event.dart';
@@ -21,10 +20,7 @@ class ConferenceListBloc extends Bloc<ConferenceRequestEvent, ConferenceRequestS
      emit(SendingConferenceRequest());
     try {
       final response = await repository.getData(query: conferenceListQuery());
-      // if(response.isLoading){
-      //   emit(SendingConferenceRequest());
-      // }
-      final responseString = response.data;
+      final responseString = response.data['data'];
       try{
         final ConferenceData responseData = ConferenceData.fromJson(responseString!);
         emit(GetConferenceListSuccessfully(listOfConference: responseData.conferences ?? []));

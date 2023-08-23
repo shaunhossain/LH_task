@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:react_conf/bloc/sponsor_bloc/sponsor_request_event.dart';
@@ -27,15 +26,11 @@ class SponsorBloc extends Bloc<SponsorRequestEvent, SponsorRequestState> {
     listOfGoldSponsors.clear();
     try {
       final response = await repository.getData(query: sponsorListQuery());
-      // if(response.isLoading){
-      //   emit(SendingConferenceRequest());
-      // }
-      final responseString = response.data;
+      final responseString = response.data['data'];
       try {
         final SponsorData responseData = SponsorData.fromJson(responseString!);
         for (var item in responseData.sponsors!) {
           if (item.type!.first == Type.SPONSOR && item.image != null) {
-            log("image ->${item.image!.url}");
             listOfSponsors.add(item);
           }
 
