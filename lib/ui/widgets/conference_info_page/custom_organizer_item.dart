@@ -55,6 +55,7 @@ class CustomOrganizerItem extends StatelessWidget {
                   Text(
                     about,
                     style: p2TextStyle(blackColor),
+                    maxLines: 5,
                   ),
                 ],
               ),

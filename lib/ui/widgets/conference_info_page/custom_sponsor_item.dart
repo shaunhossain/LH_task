@@ -45,7 +45,7 @@ class CustomSponsorItem extends StatelessWidget {
                 children: [
                   Text(name,style: h4TextStyle(blackColor),),
                   const SizedBox(height: 8,),
-                  Text(about,style: p2TextStyle(blackColor),),
+                  Text(about,style: p2TextStyle(blackColor),maxLines: 5,),
                 ],
               ),
             ),

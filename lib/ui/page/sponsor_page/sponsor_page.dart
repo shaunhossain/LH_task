@@ -9,6 +9,7 @@ import 'package:react_conf/core/util/app_colors.dart';
 import 'package:react_conf/core/util/size_config.dart';
 import 'package:react_conf/core/util/styles.dart';
 import 'package:react_conf/ui/widgets/custom_retry_button.dart';
+import 'package:react_conf/ui/widgets/sponsor_page/custom_sponsor_item.dart';
 
 class SponsorPage extends StatefulWidget {
   const SponsorPage({super.key});
@@ -29,9 +30,6 @@ class _SponsorPageState extends State<SponsorPage> {
   void _getConferenceList() {
     context.read<SponsorBloc>().add(SendSponsorRequest());
   }
-
-  List<String> widgetList = ['A', 'B', 'C'];
-  List<String> widgetList2 = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
   @override
   Widget build(BuildContext context) {
@@ -86,14 +84,19 @@ class _SponsorPageState extends State<SponsorPage> {
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Container(
                                   width: SizeConfig.width,
-                                  height: state.listOfGoldSponsors.length > 4 ? 200 : 160,
+                                  height: state.listOfGoldSponsors.length > 15
+                                      ? SizeConfig.height! * 0.5
+                                      : state.listOfGoldSponsors.length > 4
+                                      ? SizeConfig.height! * 0.275
+                                      : SizeConfig.height! * 0.2,
                                   padding: const EdgeInsets.all(16.0),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     color: whiteColor,
                                   ),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "🥇 Gold Sponsor",
@@ -106,19 +109,10 @@ class _SponsorPageState extends State<SponsorPage> {
                                         child: GridView.count(
                                           crossAxisCount: 2,
                                           childAspectRatio: 2.5,
-                                          children: state.listOfGoldSponsors.map((item) => Container(
-                                            height: 20.0,
-                                            color: Colors.green,
-                                            margin: const EdgeInsets.all(10.0),
-                                            child: Center(
-                                              child: Text(
-                                                item.name ?? "",
-                                                style: const TextStyle(
-                                                    fontSize: 18.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          )).toList(),
+                                          children: state.listOfGoldSponsors
+                                              .map((item) {
+                                            return CustomSponsorItem(imageUrl: item.image!.url!);
+                                          }).toList(),
                                         ),
                                       )
                                     ],
@@ -142,10 +136,15 @@ class _SponsorPageState extends State<SponsorPage> {
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Container(
                                   width: SizeConfig.width,
-                                  height: state.listOfBronzeSponsors.length > 4 ? 200 : 160,
+                                  height: state.listOfBronzeSponsors.length > 15
+                                      ? SizeConfig.height! * 0.7
+                                      : state.listOfBronzeSponsors.length > 4
+                                      ? SizeConfig.height! * 0.275
+                                      : SizeConfig.height! * 0.2,
                                   padding: const EdgeInsets.all(16.0),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "🥈 Silver Sponsor",
@@ -158,19 +157,10 @@ class _SponsorPageState extends State<SponsorPage> {
                                         child: GridView.count(
                                           crossAxisCount: 2,
                                           childAspectRatio: 2.5,
-                                          children: state.listOfBronzeSponsors.map((item) => Container(
-                                            height: 20.0,
-                                            color: Colors.green,
-                                            margin: const EdgeInsets.all(10.0),
-                                            child: Center(
-                                              child: Text(
-                                                item.name ?? "",
-                                                style: const TextStyle(
-                                                    fontSize: 18.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          )).toList(),
+                                          children: state.listOfBronzeSponsors
+                                              .map((item) {
+                                            return CustomSponsorItem(imageUrl: item.image!.url!);
+                                          }).toList(),
                                         ),
                                       )
                                     ],
@@ -194,10 +184,15 @@ class _SponsorPageState extends State<SponsorPage> {
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Container(
                                   width: SizeConfig.width,
-                                  height: state.listOfSponsors.length > 4 ? 220 : 160,
+                                  height: state.listOfSponsors.length > 15
+                                      ? SizeConfig.height! * 0.7
+                                      : state.listOfSponsors.length > 4
+                                          ? SizeConfig.height! * 0.275
+                                          : SizeConfig.height! * 0.2,
                                   padding: const EdgeInsets.all(16.0),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "🥉 Sponsors",
@@ -210,19 +205,11 @@ class _SponsorPageState extends State<SponsorPage> {
                                         child: GridView.count(
                                           crossAxisCount: 2,
                                           childAspectRatio: 2.5,
-                                          children: state.listOfSponsors.map((item) => Container(
-                                            height: 20.0,
-                                            color: Colors.green,
-                                            margin: const EdgeInsets.all(10.0),
-                                            child: Center(
-                                              child: Text(
-                                                item.name ?? "",
-                                                style: const TextStyle(
-                                                    fontSize: 18.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          )).toList(),
+                                          children: state.listOfSponsors.map(
+                                            (item) {
+                                              return CustomSponsorItem(imageUrl: item.image!.url!);
+                                            },
+                                          ).toList(),
                                         ),
                                       )
                                     ],

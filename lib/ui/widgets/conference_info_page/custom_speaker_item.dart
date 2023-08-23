@@ -88,7 +88,7 @@ class CustomSpeakerItem extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 8,),
-                  Text(about,style: p2TextStyle(blackColor),),
+                  Text(about,style: p2TextStyle(blackColor),maxLines: 5,),
                 ],
               ),
             ),
