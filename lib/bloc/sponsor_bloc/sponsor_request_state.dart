@@ -14,8 +14,10 @@ class InitialSponsorRequest extends SponsorRequestState {}
 class SendingSponsorRequest extends SponsorRequestState {}
 
 class GetSponsorListSuccessfully extends SponsorRequestState {
-  GetSponsorListSuccessfully({required this.listOfSponsors});
+  GetSponsorListSuccessfully({required this.listOfSponsors, required this.listOfGoldSponsors, required this.listOfBronzeSponsors,});
+ final List<Sponsor> listOfGoldSponsors;
  final List<Sponsor> listOfSponsors;
+ final List<Sponsor> listOfBronzeSponsors;
 
  @override
  List<Object> get props => [listOfSponsors];
