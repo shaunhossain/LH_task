@@ -30,7 +30,7 @@ class ConferenceDetailsBloc
             conferenceDetailData: responseData));
       } catch (exception) {
         emit(ConferenceDetailsRequestError(
-          error: UnknownException(exception.toString()),
+          error: DecodeException(exception.toString()),
         ));
       }
     } on SocketException {

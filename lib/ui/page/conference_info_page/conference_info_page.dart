@@ -24,7 +24,6 @@ class _ConferenceInfoPageState extends State<ConferenceInfoPage> {
 
   @override
   void initState() {
-    log("agr -> ${widget.argument.toString()}");
     _getConferenceDetails();
     super.initState();
   }
