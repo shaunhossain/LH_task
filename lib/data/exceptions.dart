@@ -13,6 +13,11 @@ class InvalidFormatException {
   InvalidFormatException(this.message);
 }
 
+class DecodeException {
+  var message;
+  DecodeException(this.message);
+}
+
 class UnknownException {
   var message;
   UnknownException(this.message);

@@ -27,13 +27,18 @@ class CustomSponsorItem extends StatelessWidget {
           Flexible(
             flex: 1,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: SvgPicture.network(
-                imageUrl,
-                width: SizeConfig.width! * 0.24,
-                height: SizeConfig.width! * 0.24,
-                fit: BoxFit.scaleDown,
-              ),
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(imageUrl,
+                    width: SizeConfig.width! * 0.24,
+                    height: SizeConfig.width! * 0.24,
+                    fit: BoxFit.scaleDown,
+                    errorBuilder: (context, error, stackTrace) =>
+                        SvgPicture.network(
+                          imageUrl,
+                          width: SizeConfig.width! * 0.24,
+                          height: SizeConfig.width! * 0.24,
+                          fit: BoxFit.scaleDown,
+                        ))
             ),
           ),
           Flexible(

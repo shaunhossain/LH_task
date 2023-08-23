@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:react_conf/bloc/conference_details_bloc/conference_details_request_event.dart';
@@ -23,10 +22,7 @@ class ConferenceDetailsBloc
     try {
       final response =
           await repository.getData(query: conferenceQuery(id: event.id));
-      // if(response.isLoading){
-      //   emit(SendingConferenceRequest());
-      // }
-      final responseString = response.data;
+      final responseString = response.data['data'];
       try {
         final ConferenceDetailData responseData =
             ConferenceDetailData.fromJson(responseString!);
@@ -34,7 +30,7 @@ class ConferenceDetailsBloc
             conferenceDetailData: responseData));
       } catch (exception) {
         emit(ConferenceDetailsRequestError(
-          error: UnknownException(exception.toString()),
+          error: DecodeException(exception.toString()),
         ));
       }
     } on SocketException {

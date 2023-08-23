@@ -1,18 +1,9 @@
-import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:react_conf/data/service/graphql_service.dart';
 
 class Repository {
-  final GraphQLClient client;
-
-  Repository({
-    required this.client,
-  });
-
-  Future<QueryResult> getData({required String query}) async {
-    final results = await client.query(
-      QueryOptions(
-        document: gql(query),
-      ),
-    );
+  final GraphQLService service = GraphQLService();
+  Future<dynamic> getData({required String query}) async {
+    final results = await service.getData(query: query);
     return results;
   }
 }
