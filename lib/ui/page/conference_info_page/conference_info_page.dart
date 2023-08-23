@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:react_conf/bloc/conference_details_bloc/conference_details_bloc.dart';
@@ -24,7 +22,6 @@ class _ConferenceInfoPageState extends State<ConferenceInfoPage> {
 
   @override
   void initState() {
-    log("agr -> ${widget.argument.toString()}");
     _getConferenceDetails();
     super.initState();
   }

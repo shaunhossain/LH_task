@@ -92,14 +92,12 @@ class _HomePageState extends State<HomePage> {
                       itemCount: state.listOfConference.length,
                       itemBuilder: (context, index) {
                         if (state.listOfConference.length == index + 1) {
-                          log("check_id -> ${state.listOfConference[index].id}");
                           return CustomConferenceLastItem(
                             title: state.listOfConference[index].name ?? "",
                             about: state.listOfConference[index].slogan ?? "",
                             date: DateFormat('d MMMM, yyyy').format(
                                 state.listOfConference[index].startDate!),
                             onTap: () {
-                              log("check_id2 -> ${state.listOfConference[index].id}");
                               Navigator.of(context).pushNamed(
                                   '/conference-info',
                                   arguments: state.listOfConference[index].id

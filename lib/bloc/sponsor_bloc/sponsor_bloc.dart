@@ -35,7 +35,6 @@ class SponsorBloc extends Bloc<SponsorRequestEvent, SponsorRequestState> {
         final SponsorData responseData = SponsorData.fromJson(responseString!);
         for (var item in responseData.sponsors!) {
           if (item.type!.first == Type.SPONSOR && item.image != null) {
-            log("image ->${item.image!.url}");
             listOfSponsors.add(item);
           }
 
