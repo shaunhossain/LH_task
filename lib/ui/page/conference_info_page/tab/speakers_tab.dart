@@ -25,48 +25,58 @@ class SpeakersTab extends StatelessWidget {
               );
             }
             if (state is GetConferenceDetailsSuccessfully) {
-              return SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-
-                      /// Speaker
-                      const SizedBox(
-                        height: 32,
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 32,
+                          ),
+                          Text(
+                            "Speakers",
+                            style: h1TextStyle(blackColor),
+                          ),
+                          const SizedBox(
+                            height: 24,
+                          ),
+                        ],
                       ),
-                      Text(
-                        "Speakers",
-                        style: h1TextStyle(blackColor),
-                      ),
-                      const SizedBox(
-                        height: 24,
-                      ),
-                      Card(
+                    ),
+                    SliverToBoxAdapter(
+                      child: Card(
                         elevation: 0,
                         color: whiteColor,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8)),
                         child: Container(
-                            width: SizeConfig.width,
-                            height: SizeConfig.height! * 0.58,
-                            padding: const EdgeInsets.only(top: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: whiteColor,
-                            ),
-                            child: ListView.builder(
-                                itemCount: state.conferenceDetailData.conference?.speakers?.length,
-                                itemBuilder: (context, index) {
-                                  return CustomSpeakerItem(
-                                    imageUrl: state.conferenceDetailData.conference?.speakers?[index].image?.url ?? "",
-                                    name: state.conferenceDetailData.conference?.speakers?[index].name ?? "",
-                                    about: state.conferenceDetailData.conference?.speakers?[index].about ?? "",
-                                    socialData: state.conferenceDetailData.conference!.speakers![index].social!,);
-                                })),
+                          width: SizeConfig.width,
+                          padding: const EdgeInsets.only(top: 10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: whiteColor,
+                          ),
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: state.conferenceDetailData.conference?.speakers?.length,
+                              itemBuilder: (context, index) {
+                                return CustomSpeakerItem(
+                                  imageUrl: state.conferenceDetailData.conference?.speakers?[index].image?.url ?? "",
+                                  name: state.conferenceDetailData.conference?.speakers?[index].name ?? "",
+                                  about: state.conferenceDetailData.conference?.speakers?[index].about ?? "",
+                                  socialData: state.conferenceDetailData.conference!.speakers![index].social!,);
+                              }
+                          ),
+                        ),
                       ),
-                    ],
-                  ));
+                    ),
+                  ],
+                ),
+              );
             }
 
             return Center(
