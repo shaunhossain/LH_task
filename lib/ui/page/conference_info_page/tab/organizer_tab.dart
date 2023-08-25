@@ -20,181 +20,226 @@ class OrganizerTab extends StatelessWidget {
       backgroundColor: Colors.white,
       body: BlocBuilder<ConferenceDetailsBloc, ConferenceDetailsRequestState>(
           builder: (context, state) {
-        if (state is SendingConferenceDetailsRequest) {
-          return const Center(
-            child: CircularProgressIndicator(
-              color: primaryColor,
-            ),
-          );
-        }
-        if (state is GetConferenceDetailsSuccessfully) {
-          return SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  /// organizer
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Text(
-                    "Organizer",
-                    style: h1TextStyle(blackColor),
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Card(
-                    elevation: 0,
-                    color: whiteColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Container(
-                        width: SizeConfig.width,
-                        height: SizeConfig.height! * 0.58,
-                        padding: const EdgeInsets.only(top: 20, bottom: 20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: whiteColor,
+            if (state is SendingConferenceDetailsRequest) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: primaryColor,
+                ),
+              );
+            }
+            if (state is GetConferenceDetailsSuccessfully) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 24,
+                          ),
+                          Text(
+                            "Organizer",
+                            style: h1TextStyle(blackColor),
+                          ),
+                          const SizedBox(
+                            height: 24,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Card(
+                        elevation: 0,
+                        color: whiteColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Container(
+                          width: SizeConfig.width,
+                          padding: const EdgeInsets.only(top: 10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: whiteColor,
+                          ),
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount:
+                              state.conferenceDetailData.conference?.organizers?.length,
+                              itemBuilder: (context, index) {
+                                return CustomOrganizerItem(
+                                    imageUrl: state.conferenceDetailData.conference
+                                        ?.organizers?[index].image?.url ??
+                                        "",
+                                    name: state.conferenceDetailData.conference
+                                        ?.organizers?[index].name ??
+                                        "",
+                                    about: state.conferenceDetailData.conference
+                                        ?.organizers?[index].about ??
+                                        "");
+                              }),
                         ),
-                        child: ListView.builder(
-                            itemCount: state.conferenceDetailData.conference?.organizers?.length,
-                            itemBuilder: (context, index) {
-                              return CustomOrganizerItem(
-                                  imageUrl: state.conferenceDetailData.conference?.organizers?[index].image?.url ?? "",
-                                  name: state.conferenceDetailData.conference?.organizers?[index].name ?? "",
-                                  about: state.conferenceDetailData.conference?.organizers?[index].about ?? "");
-                            })),
-                  ),
-
-                  /// Speaker
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  Text(
-                    "Speakers",
-                    style: h1TextStyle(blackColor),
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Card(
-                    elevation: 0,
-                    color: whiteColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Container(
-                        width: SizeConfig.width,
-                        height: SizeConfig.height! * 0.58,
-                        padding: const EdgeInsets.only(top: 10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: whiteColor,
-                        ),
-                        child: ListView.builder(
-                            itemCount: state.conferenceDetailData.conference?.speakers?.length,
-                            itemBuilder: (context, index) {
-                              return CustomSpeakerItem(
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 32,
+                          ),
+                          Text(
+                            "Speakers",
+                            style: h1TextStyle(blackColor),
+                          ),
+                          const SizedBox(
+                            height: 24,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Card(
+                        elevation: 0,
+                        color: whiteColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Container(
+                          width: SizeConfig.width,
+                          padding: const EdgeInsets.only(top: 10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: whiteColor,
+                          ),
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: state.conferenceDetailData.conference?.speakers?.length,
+                              itemBuilder: (context, index) {
+                                return CustomSpeakerItem(
                                   imageUrl: state.conferenceDetailData.conference?.speakers?[index].image?.url ?? "",
                                   name: state.conferenceDetailData.conference?.speakers?[index].name ?? "",
                                   about: state.conferenceDetailData.conference?.speakers?[index].about ?? "",
-                                socialData: state.conferenceDetailData.conference!.speakers![index].social!,);
-                            })),
-                  ),
-
-                  /// Schedule
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  Text(
-                    "Schedule",
-                    style: h1TextStyle(blackColor),
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Card(
-                    elevation: 0,
-                    color: whiteColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Container(
-                        width: SizeConfig.width,
-                        height: SizeConfig.height! * 0.58,
-                        padding: const EdgeInsets.only(top: 10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: whiteColor,
+                                  socialData: state.conferenceDetailData.conference!.speakers![index].social!,);
+                              }
+                          ),
                         ),
-                        child: ListView.builder(
-                            itemCount: state.conferenceDetailData.conference?.schedules?.length,
-                            itemBuilder: (context, index) {
-                              return CustomScheduleItem(
-                                  date: state.conferenceDetailData.conference!.schedules![index].day!,
-                                  listOfInterval: state.conferenceDetailData.conference!.schedules![index].intervals);
-                            })),
-                  ),
+                      ),
+                    ),
 
-                  /// Sponsor
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  Text(
-                    "Sponsors",
-                    style: h1TextStyle(blackColor),
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Card(
-                    elevation: 0,
-                    color: whiteColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Container(
-                        width: SizeConfig.width,
-                        height: SizeConfig.height! * 0.58,
-                        padding: const EdgeInsets.only(top: 20, bottom: 20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: whiteColor,
-                        ),
-                        child: ListView.builder(
-                            itemCount: state.conferenceDetailData.conference?.sponsors?.length,
-                            itemBuilder: (context, index) {
-                              return CustomSponsorItem(
-                                  imageUrl: state.conferenceDetailData.conference?.sponsors?[index].image?.url ?? "",
-                                  name: state.conferenceDetailData.conference?.sponsors?[index].name ?? "",
-                                  about: state.conferenceDetailData.conference?.sponsors?[index].about ?? "");
-                            })),
-                  ),
-                ],
-              ));
-        }
+                    SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 32,
+                          ),
+                          Text(
+                            "Schedule",
+                            style: h1TextStyle(blackColor),
+                          ),
+                          const SizedBox(
+                            height: 24,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Card(
+                        elevation: 0,
+                        color: whiteColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Container(
+                            width: SizeConfig.width,
+                            padding: const EdgeInsets.only(top: 10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: whiteColor,
+                            ),
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: state.conferenceDetailData.conference?.schedules?.length,
+                                itemBuilder: (context, index) {
+                                  return CustomScheduleItem(
+                                      date: state.conferenceDetailData.conference!.schedules![index].day!,
+                                      listOfInterval: state.conferenceDetailData.conference!.schedules![index].intervals);
+                                })),
+                      ),
+                    ),
 
-        return Center(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: SizeConfig.height! * 0.3,
-            ),
-            Text(
-              'No Data Found',
-              style: h4TextStyle(darkGreyColor),
-            ),
-            SizedBox(
-                width: SizeConfig.width! * 0.3,
-                child: CustomRetryButton(
-                    title: "Retry",
-                    color: primaryColor,
-                    onPress: () {
-                      //_getConferenceList();
-                    },
-                    textColor: Colors.white))
-          ],
-        ));
-      }),
+                    SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 32,
+                          ),
+                          Text(
+                            "Sponsors",
+                            style: h1TextStyle(blackColor),
+                          ),
+                          const SizedBox(
+                            height: 24,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child:  Card(
+                        elevation: 0,
+                        color: whiteColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Container(
+                            width: SizeConfig.width,
+                            padding: const EdgeInsets.only(top: 20, bottom: 20),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: whiteColor,
+                            ),
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: state.conferenceDetailData.conference?.sponsors?.length,
+                                itemBuilder: (context, index) {
+                                  return CustomSponsorItem(
+                                      imageUrl: state.conferenceDetailData.conference?.sponsors?[index].image?.url ?? "",
+                                      name: state.conferenceDetailData.conference?.sponsors?[index].name ?? "",
+                                      about: state.conferenceDetailData.conference?.sponsors?[index].about ?? "");
+                                })),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            return Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: SizeConfig.height! * 0.3,
+                    ),
+                    Text(
+                      'No Data Found',
+                      style: h4TextStyle(darkGreyColor),
+                    ),
+                    SizedBox(
+                        width: SizeConfig.width! * 0.3,
+                        child: CustomRetryButton(
+                            title: "Retry",
+                            color: primaryColor,
+                            onPress: () {
+                              //_getConferenceList();
+                            },
+                            textColor: Colors.white))
+                  ],
+                ));
+          }),
     );
   }
 }

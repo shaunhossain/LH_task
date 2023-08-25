@@ -25,37 +25,43 @@ class SponsorsTab extends StatelessWidget {
               );
             }
             if (state is GetConferenceDetailsSuccessfully) {
-              return SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-
-                      /// Sponsor
-                      const SizedBox(
-                        height: 32,
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 32,
+                          ),
+                          Text(
+                            "Sponsors",
+                            style: h1TextStyle(blackColor),
+                          ),
+                          const SizedBox(
+                            height: 24,
+                          ),
+                        ],
                       ),
-                      Text(
-                        "Sponsors",
-                        style: h1TextStyle(blackColor),
-                      ),
-                      const SizedBox(
-                        height: 24,
-                      ),
-                      Card(
+                    ),
+                    SliverToBoxAdapter(
+                      child:  Card(
                         elevation: 0,
                         color: whiteColor,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8)),
                         child: Container(
                             width: SizeConfig.width,
-                            height: SizeConfig.height! * 0.58,
                             padding: const EdgeInsets.only(top: 20, bottom: 20),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: whiteColor,
                             ),
                             child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
                                 itemCount: state.conferenceDetailData.conference?.sponsors?.length,
                                 itemBuilder: (context, index) {
                                   return CustomSponsorItem(
@@ -64,8 +70,10 @@ class SponsorsTab extends StatelessWidget {
                                       about: state.conferenceDetailData.conference?.sponsors?[index].about ?? "");
                                 })),
                       ),
-                    ],
-                  ));
+                    ),
+                  ],
+                ),
+              );
             }
 
             return Center(

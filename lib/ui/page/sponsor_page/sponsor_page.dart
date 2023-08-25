@@ -48,16 +48,16 @@ class _SponsorPageState extends State<SponsorPage> {
             ),
             body: BlocListener<InternetBloc, InternetState>(
                 listener: (context, state) {
-              if (state is Disconnected) {
-                setState(() {
-                  hasInternet = false;
-                });
-              } else {
-                setState(() {
-                  hasInternet = true;
-                });
-              }
-            }, child: BlocBuilder<SponsorBloc, SponsorRequestState>(
+                  if (state is Disconnected) {
+                    setState(() {
+                      hasInternet = false;
+                    });
+                  } else {
+                    setState(() {
+                      hasInternet = true;
+                    });
+                  }
+                }, child: BlocBuilder<SponsorBloc, SponsorRequestState>(
               builder: (context, state) {
                 if (state is SendingSponsorRequest) {
                   return const Center(
@@ -67,189 +67,180 @@ class _SponsorPageState extends State<SponsorPage> {
                   );
                 }
                 if (state is GetSponsorListSuccessfully) {
-                  return SingleChildScrollView(
+                  return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Column(
-                      children: [
-                        if (state.listOfGoldSponsors.isNotEmpty)
-                          Column(
-                            children: [
-                              const SizedBox(
-                                height: 24,
-                              ),
-                              Card(
-                                elevation: 0,
-                                color: whiteColor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Container(
-                                  width: SizeConfig.width,
-                                  height: state.listOfGoldSponsors.length > 15
-                                      ? SizeConfig.height! * 0.5
-                                      : state.listOfGoldSponsors.length > 4
-                                      ? SizeConfig.height! * 0.275
-                                      : SizeConfig.height! * 0.2,
-                                  padding: const EdgeInsets.all(16.0),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: whiteColor,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                    child: CustomScrollView(
+                        slivers: [
+                          SliverToBoxAdapter(
+                            child: Column(
+                              children: [
+                                if (state.listOfGoldSponsors.isNotEmpty)
+                                  Column(
                                     children: [
-                                      Text(
-                                        "🥇 Gold Sponsor",
-                                        style: p1TextStyle(darkGreyColor),
-                                      ),
                                       const SizedBox(
-                                        height: 20,
+                                        height: 24,
                                       ),
-                                      Flexible(
-                                        child: GridView.count(
-                                          crossAxisCount: 2,
-                                          childAspectRatio: 2.5,
-                                          children: state.listOfGoldSponsors
-                                              .map((item) {
-                                            return CustomSponsorItem(imageUrl: item.image!.url!);
-                                          }).toList(),
+                                      Card(
+                                        elevation: 0,
+                                        color: whiteColor,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8)),
+                                        child: Container(
+                                          width: SizeConfig.width,
+                                          padding: const EdgeInsets.all(16.0),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(8),
+                                            color: whiteColor,
+                                          ),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "🥇 Gold Sponsor",
+                                                style: p1TextStyle(darkGreyColor),
+                                              ),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              GridView.count(
+                                                crossAxisCount: 2,
+                                                childAspectRatio: 2.5,
+                                                shrinkWrap: true,
+                                                physics: const NeverScrollableScrollPhysics(),
+                                                children: state.listOfGoldSponsors
+                                                    .map((item) {
+                                                  return CustomSponsorItem(imageUrl: item.image!.url!);
+                                                }).toList(),
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      )
+                                      ),
                                     ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        else
-                          const SizedBox(),
-                        if (state.listOfBronzeSponsors.isNotEmpty)
-                          Column(
-                            children: [
-                              const SizedBox(
-                                height: 24,
-                              ),
-                              Card(
-                                elevation: 0,
-                                color: whiteColor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Container(
-                                  width: SizeConfig.width,
-                                  height: state.listOfBronzeSponsors.length > 15
-                                      ? SizeConfig.height! * 0.7
-                                      : state.listOfBronzeSponsors.length > 4
-                                      ? SizeConfig.height! * 0.275
-                                      : SizeConfig.height! * 0.2,
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                  )
+                                else
+                                  const SizedBox(),
+                                if (state.listOfBronzeSponsors.isNotEmpty)
+                                  Column(
                                     children: [
-                                      Text(
-                                        "🥈 Silver Sponsor",
-                                        style: p1TextStyle(darkGreyColor),
-                                      ),
                                       const SizedBox(
-                                        height: 20,
+                                        height: 24,
                                       ),
-                                      Flexible(
-                                        child: GridView.count(
-                                          crossAxisCount: 2,
-                                          childAspectRatio: 2.5,
-                                          children: state.listOfBronzeSponsors
-                                              .map((item) {
-                                            return CustomSponsorItem(imageUrl: item.image!.url!);
-                                          }).toList(),
+                                      Card(
+                                        elevation: 0,
+                                        color: whiteColor,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8)),
+                                        child: Container(
+                                          width: SizeConfig.width,
+                                          padding: const EdgeInsets.all(16.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "🥈 Silver Sponsor",
+                                                style: p1TextStyle(darkGreyColor),
+                                              ),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              GridView.count(
+                                                crossAxisCount: 2,
+                                                childAspectRatio: 2.5,
+                                                shrinkWrap: true,
+                                                physics: const NeverScrollableScrollPhysics(),
+                                                children: state.listOfBronzeSponsors
+                                                    .map((item) {
+                                                  return CustomSponsorItem(imageUrl: item.image!.url!);
+                                                }).toList(),
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      )
+                                      ),
                                     ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        else
-                          const SizedBox(),
-                        if (state.listOfSponsors.isNotEmpty)
-                          Column(
-                            children: [
-                              const SizedBox(
-                                height: 24,
-                              ),
-                              Card(
-                                elevation: 0,
-                                color: whiteColor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Container(
-                                  width: SizeConfig.width,
-                                  height: state.listOfSponsors.length > 15
-                                      ? SizeConfig.height! * 0.7
-                                      : state.listOfSponsors.length > 4
-                                          ? SizeConfig.height! * 0.275
-                                          : SizeConfig.height! * 0.2,
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                  )
+                                else
+                                  const SizedBox(),
+                                if (state.listOfSponsors.isNotEmpty)
+                                  Column(
                                     children: [
-                                      Text(
-                                        "🥉 Sponsors",
-                                        style: p1TextStyle(darkGreyColor),
-                                      ),
                                       const SizedBox(
-                                        height: 20,
+                                        height: 24,
                                       ),
-                                      Flexible(
-                                        child: GridView.count(
-                                          crossAxisCount: 2,
-                                          childAspectRatio: 2.5,
-                                          children: state.listOfSponsors.map(
-                                            (item) {
-                                              return CustomSponsorItem(imageUrl: item.image!.url!);
-                                            },
-                                          ).toList(),
+                                      Card(
+                                        elevation: 0,
+                                        color: whiteColor,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8)),
+                                        child: Container(
+                                          width: SizeConfig.width,
+                                          padding: const EdgeInsets.all(16.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "🥉 Sponsors",
+                                                style: p1TextStyle(darkGreyColor),
+                                              ),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              GridView.count(
+                                                crossAxisCount: 2,
+                                                childAspectRatio: 2.5,
+                                                shrinkWrap: true,
+                                                physics: const NeverScrollableScrollPhysics(),
+                                                children: state.listOfSponsors.map(
+                                                      (item) {
+                                                    return CustomSponsorItem(imageUrl: item.image!.url!);
+                                                  },
+                                                ).toList(),
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      )
+                                      ),
                                     ],
-                                  ),
+                                  )
+                                else
+                                  const SizedBox(),
+                                const SizedBox(
+                                  height: 24,
                                 ),
-                              ),
-                            ],
-                          )
-                        else
-                          const SizedBox(),
-                        const SizedBox(
-                          height: 24,
-                        ),
-                      ],
+                              ],
+                            ),
+                          ),
+                        ]
                     ),
                   );
                 }
 
                 return Center(
                     child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: SizeConfig.height! * 0.3,
-                    ),
-                    Text(
-                      'No Data Found',
-                      style: h4TextStyle(darkGreyColor),
-                    ),
-                    SizedBox(
-                        width: SizeConfig.width! * 0.3,
-                        child: CustomRetryButton(
-                            title: "Retry",
-                            color: primaryColor,
-                            onPress: () {
-                              _getConferenceList();
-                            },
-                            textColor: Colors.white))
-                  ],
-                ));
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: SizeConfig.height! * 0.3,
+                        ),
+                        Text(
+                          'No Data Found',
+                          style: h4TextStyle(darkGreyColor),
+                        ),
+                        SizedBox(
+                            width: SizeConfig.width! * 0.3,
+                            child: CustomRetryButton(
+                                title: "Retry",
+                                color: primaryColor,
+                                onPress: () {
+                                  _getConferenceList();
+                                },
+                                textColor: Colors.white))
+                      ],
+                    ));
               },
             ))));
   }
