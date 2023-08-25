@@ -14,7 +14,6 @@ import 'package:react_conf/core/util/size_config.dart';
 import 'package:react_conf/core/util/styles.dart';
 import 'package:react_conf/ui/widgets/custom_retry_button.dart';
 import 'package:react_conf/ui/widgets/home_page/custom_conference_item.dart';
-import 'package:react_conf/ui/widgets/home_page/custom_conference_last_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -88,36 +87,53 @@ class _HomePageState extends State<HomePage> {
                       height: 32,
                     ),
                   ),
-                  SliverList.builder(
-                      itemCount: state.listOfConference.length,
-                      itemBuilder: (context, index) {
-                        if (state.listOfConference.length == index + 1) {
-                          return CustomConferenceLastItem(
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    sliver: SliverList.builder(
+                        itemCount: state.listOfConference.length,
+                        itemBuilder: (context, index) {
+                          if (index == 0) {
+                            return CustomConferenceItem(
+                              title: state.listOfConference[index].name ?? "",
+                              about: state.listOfConference[index].slogan ?? "",
+                              date: DateFormat('d MMMM, yyyy')
+                                  .format(state.listOfConference[index].startDate!),
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                    '/conference-info',
+                                    arguments: state.listOfConference[index].id
+                                );
+                              }, topLineColor: whiteColor, bottomLineColor: primaryColor,
+                            );
+                          }
+                          if (state.listOfConference.length == index + 1) {
+                            return CustomConferenceItem(
+                              title: state.listOfConference[index].name ?? "",
+                              about: state.listOfConference[index].slogan ?? "",
+                              date: DateFormat('d MMMM, yyyy')
+                                  .format(state.listOfConference[index].startDate!),
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                    '/conference-info',
+                                    arguments: state.listOfConference[index].id
+                                );
+                              }, topLineColor: primaryColor, bottomLineColor: whiteColor,
+                            );
+                          }
+                          return CustomConferenceItem(
                             title: state.listOfConference[index].name ?? "",
                             about: state.listOfConference[index].slogan ?? "",
-                            date: DateFormat('d MMMM, yyyy').format(
-                                state.listOfConference[index].startDate!),
+                            date: DateFormat('d MMMM, yyyy')
+                                .format(state.listOfConference[index].startDate!),
                             onTap: () {
                               Navigator.of(context).pushNamed(
-                                  '/conference-info',
+                                '/conference-info',
                                   arguments: state.listOfConference[index].id
                               );
-                            },
+                            }, topLineColor: primaryColor, bottomLineColor: primaryColor,
                           );
-                        }
-                        return CustomConferenceItem(
-                          title: state.listOfConference[index].name ?? "",
-                          about: state.listOfConference[index].slogan ?? "",
-                          date: DateFormat('d MMMM, yyyy')
-                              .format(state.listOfConference[index].startDate!),
-                          onTap: () {
-                            Navigator.of(context).pushNamed(
-                              '/conference-info',
-                                arguments: state.listOfConference[index].id
-                            );
-                          },
-                        );
-                      })
+                        }),
+                  )
                 ],
               ),
             );
